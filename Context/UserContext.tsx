@@ -31,7 +31,6 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
       sessionStorage.removeItem('userData');
     }
     const saved = sessionStorage.getItem('userData');
-    console.log(user)
   }, [user]);
 
   const updateUser = (newData: UserData) => {

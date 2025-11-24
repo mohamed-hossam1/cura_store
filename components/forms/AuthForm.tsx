@@ -50,7 +50,7 @@ export default function AuthForm({ fromType }: AuthFormProps) {
           } else {
             const user = await GetUser()
             updateUser(user)
-            router.replace("/")
+            router.replace(ROUTES.HOME)
           }
         } else {
           const { signInError } = await SignInSupabase(values);
@@ -59,7 +59,7 @@ export default function AuthForm({ fromType }: AuthFormProps) {
           }else {
             const user = await GetUser()
             updateUser(user)
-            router.replace("/")
+            router.replace(ROUTES.HOME)
           }
         }
       } catch (error) {

@@ -1,8 +1,12 @@
-import Image from "next/image";
-import { ModeToggle } from "@/components/navbar/ModeToggle";
-import { createClient } from "@/lib/supabase/server";
+import Products from "@/components/home/Products";
+import Slider from "@/components/home/Slider";
 
 export default function Home() {
+  return (
+    <div>
+      <Slider />
 
-  return <div className="">l</div>;
+      <Products />
+    </div>
+  );
 }

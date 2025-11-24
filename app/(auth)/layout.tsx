@@ -1,4 +1,4 @@
-import Navbar from "@/components/navbar/Navbar";
+import Navbar from "@/components/navbar";
 import ROUTES from "@/constants/routes";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,11 +20,11 @@ export default function AuthLayout({
                 className="flex items-center hover:scale-105 transition-transform duration-300 cursor-pointer"
               >
                 <Image
-                  src="/logo.png"
+                  src="/cura-logo.png"
                   width={120}
                   height={120}
                   alt="Picture of the author"
-                  priority={true} 
+                  priority={true}
                   className="transition-all duration-300 hover:scale-110 h-auto "
                 />
               </Link>

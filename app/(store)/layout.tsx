@@ -1,10 +1,15 @@
-import Navbar from '@/components/navbar/Navbar'
-import React from 'react'
+import Navbar from "@/components/navbar";
+import React from "react";
 
-export default function StoreLayout() {
+export default function StoreLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <>
-          <Navbar />
+      <Navbar />
+      {children}
     </>
-  )
+  );
 }

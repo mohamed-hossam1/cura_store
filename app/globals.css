@@ -2,6 +2,9 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
+html {
+  font-size: 90% !important
+}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -52,7 +55,7 @@
   --popover-foreground: oklch(0.145 0 0);
   --primary: #1F1F6F;
   --primary-hover: #081f4c;
-  --primary-foreground: oklch(0.985 0 0);
+  --primary-foreground: #7A7AAA;
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
@@ -88,8 +91,8 @@
   --popover-foreground: oklch(0.145 0 0);
   --primary: #1F1F6F;
   --primary-hover: #081f4c;
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
+  --primary-foreground: rgb(149, 149, 181);
+  --secondary: #7A7AAA;
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
@@ -137,4 +140,22 @@
       transform: rotate(10deg);
     }
   }
+}
+
+
+.custom-scroll::-webkit-scrollbar {
+  width: 0px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: #e5e7eb00;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: #ffffff00; 
+  border-radius: 0px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: #ffffff00;
 }
