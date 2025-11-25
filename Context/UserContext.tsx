@@ -1,11 +1,6 @@
 "use client"
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
-interface UserData {
-  name: string;
-  email: string;
-  phone: string;
-}
 
 interface UserContextType {
   user: UserData | null;

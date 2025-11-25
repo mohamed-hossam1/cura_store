@@ -1,12 +1,23 @@
-import ProductCardSkeleton from "./ProductCard";
+import ProductCard from "./ProductCard";
 
-export default function CardListSkeleton() {
+interface CardListProp{
+  products: ProductData[]
+}
+
+export default function CardList({ products }:CardListProp) {
+  
+
   return (
     <div className="relative">
       <div className="flex overflow-auto custom-scroll mb-20 gap-4">
-        {[...Array(5)].map((_, i) => (
-          <ProductCardSkeleton key={i} />
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
         ))}
+        {
+          [...Array(5 - products.length)].map((_,i)=>(
+            <div key={i} className="w-full md:min-w-60 min-w-40 max-w-84"></div>
+          ))
+        }
       </div>
     </div>
   );

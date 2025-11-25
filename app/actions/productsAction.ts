@@ -11,7 +11,16 @@ export async function getAllProduct() {
       price_after,
       image_cover,
       stock,
-      categories ( title )
+      categories ( title, image, id )
     `).eq("is_deleted", false)
+  return {data,error}
+}
+
+export async function getProductDetails(id:number) {
+  const supabase = await createClient()
+  const {data, error} = await supabase.from("products").select(`
+      *
+      categories ( title, id )
+    `).eq("id", id)
   return {data,error}
 }

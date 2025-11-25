@@ -4,7 +4,7 @@ export default function ProductCardSkeleton() {
       <div className="relative md:h-52 h-30 bg-gray-200 animate-pulse">
       </div>
 
-      <div className="p-5 h-35 flex flex-col justify-around">
+      <div className="p-5 h-43 flex flex-col justify-around">
         <div className="flex items-center justify-between">
           <div className="h-5 w-9/12 bg-gray-300 rounded animate-pulse"></div>
         </div>

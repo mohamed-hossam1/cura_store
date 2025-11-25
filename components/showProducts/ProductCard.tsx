@@ -1,22 +1,43 @@
-export default function ProductCardSkeleton() {
+import Image from "next/image";
+import Link from "next/link";
+
+export default function ProductCard({product}:{product: ProductData}) {
+
   return (
-    <div className="w-full md:min-w-60 min-w-40 bg-white rounded-2xl overflow-hidden shadow-lg mb-2">
-      <div className="relative md:h-52 h-30 bg-gray-200 animate-pulse">
+    <Link  href={`/products/${product.id}`}  className="w-full md:min-w-60 min-w-40 max-w-84 bg-white rounded-2xl border overflow-hidden hover:shadow-lg mb-2 transition-all duration-300">
+      <div className="relative md:h-52 h-30 bg-white ">
+        <Image
+          fill
+          src={product.image_cover}
+          alt={product.title}
+          className="w-full h-full object-contain"
+        >
+        </Image>
       </div>
 
-      <div className="p-5 h-35 flex flex-col justify-around">
+      <div className="p-5 h-45 flex flex-col justify-around">
         <div className="flex items-center justify-between">
-          <div className="h-5 w-9/12 bg-gray-300 rounded animate-pulse"></div>
+          <div className="font-bold truncate">
+            {product.title}
+          </div>
         </div>
 
-        <div className="flex gap-3">
-          <div className="h-5 w-[35px] bg-gray-200 rounded animate-pulse mt-5"></div>
-          <div className="h-5 w-[35px] bg-gray-200 rounded animate-pulse mt-5"></div>
+        <div className="md:flex gap-3 ">
+          <div className="mt-5 text-lg md:text-xl font-bold text-primary">
+            {product.price_after} EGP
+          </div>
+          <div className="md:mt-5 relative top-[2px] md:top-[2px] line-through font-bold text-primary">
+            {product.price_before} EGP
+          </div>
         </div>
         
-        <div className="h-12 w-full bg-gray-300 rounded-sm animate-pulse mt-2"></div>
+        <div className="py-3 px-3 bg-primary rounded-xl mt-2  hover:bg-primary-hover transition-all duration-300 hover:scale-105">
+          <p className="h-full w-full text-sm md:text-lg text-white flex justify-center items-center font-bold transition-all duration-300">
+            View Product
+          </p>
+        </div>
 
       </div>
-    </div>
+    </Link>
   );
 }

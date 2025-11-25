@@ -1,5 +1,5 @@
 import ShowProducts from "../showProducts/ShowProducts";
-import ShowProductsSkeleton from "../skeleton/ShowProductsSkeleton";
+import ShowProductsSkeleton from "../skeleton/ShowProductsListSkeleton";
 import { Suspense } from "react";
 
 export const experimental_ppr = true;

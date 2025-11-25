@@ -1,40 +1,45 @@
 import { getAllProduct } from "@/app/actions/productsAction";
 import SubTitle from "./SubTitle";
+import CardList from "./CardList";
 
-type Product = {
-  id: number;
-  title: string;
-  price_after: number;
-  price_before: number;
-  stock: number;
-  image_cover: { url: string };
-  categories: { title: string };
-};
+
+interface GroupedProducts {
+  [categoryName: string]: ProductData[];
+}
 
 export default async function ShowProducts() {
-  const {data:products} = (await getAllProduct()) as Product[] || [];
+  const { data: products } = (await getAllProduct()) || { data: [] };
 
-  const safeProducts = Array.isArray(products) ? products : [];
+  const categoryId: number[] = [];
 
-  const grouped = safeProducts.reduce((acc: Record<string, Product[]>, item) => {
+  const categoryImage: string[] = [];
+
+  const grouped: GroupedProducts = products?.reduce<GroupedProducts>((acc, item) => {
     const categoryName = item.categories?.title || "Unknown";
 
     if (!acc[categoryName]) {
       acc[categoryName] = [];
+      categoryImage.push(item.categories?.image || "");
+      categoryId.push(item.categories?.id || 0);
     }
 
     acc[categoryName].push(item);
 
     return acc;
-  }, {});
+  }, {}) || {};
 
-
-  return <div className="max-w-[1600px] px-5 m-auto">
-    {
-      Object.entries(grouped)?.map(([category, products],i)=>
-        <SubTitle key={i} title={category}/>
-      )
-    }
-  
-  </div>;
+  return (
+    <div className="max-w-[1600px] px-5 m-auto">
+      {Object.entries(grouped).map(([categoryTitle, products], i) => (
+        <div key={categoryId[i]}>
+          <SubTitle 
+            categoryTitle={categoryTitle} 
+            categoryImage={categoryImage[i]} 
+            categoryId={categoryId[i]} 
+          />
+          <CardList products={products} />
+        </div>
+      ))}
+    </div>
+  );
 }
