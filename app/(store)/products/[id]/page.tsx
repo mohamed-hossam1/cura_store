@@ -1,8 +1,19 @@
+import ProductDetails from "@/components/ProductDetails/ProductDetails"
+import ProductDetailsSkeleton from "@/components/skeleton/ProductDetailsSkeleton"
+import { Suspense } from "react"
 
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }){
-  const { id } = await params
-  console.log(id)
+  const { id } = (await params)
+
   return (
-    <div>page</div>
+    id == "82"
+      ? (
+          <Suspense fallback={<ProductDetailsSkeleton />}>
+            <ProductDetails id={id} />
+          </Suspense>
+        )
+      : <ProductDetailsSkeleton />
   )
+
+
 }

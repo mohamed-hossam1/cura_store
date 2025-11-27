@@ -50,7 +50,14 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: '**',
-      }
+      },{
+        protocol: 'https',
+        hostname: 'encrypted-tbn0.gstatic.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
     ],
   },
 };

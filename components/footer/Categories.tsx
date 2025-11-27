@@ -4,7 +4,6 @@ import Link from "next/link";
 
 export default async function Categories() {
   const {data:categories} = await getAllCategories()||[];
-  console.log(categories)
   return (
     <ul className="space-y-2 text-gray-300">
       {categories?.map((category) => (

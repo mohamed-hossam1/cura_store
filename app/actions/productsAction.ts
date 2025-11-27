@@ -16,11 +16,19 @@ export async function getAllProduct() {
   return {data,error}
 }
 
-export async function getProductDetails(id:number) {
+export async function getProductDetails(id:string) {
   const supabase = await createClient()
   const {data, error} = await supabase.from("products").select(`
       *
-      categories ( title, id )
-    `).eq("id", id)
+    `).eq("id", id).single()
+  return {data,error}
+}
+
+
+export async function getRelatedProducts(categoryId:number, prodactId:number) {
+  const supabase = await createClient()
+  const {data, error} = await supabase.from("products").select(`
+      *
+    `).eq("category_id", categoryId).neq("id", prodactId)
   return {data,error}
 }
