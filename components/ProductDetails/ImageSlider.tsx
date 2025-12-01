@@ -89,7 +89,6 @@ export default function ImageSlider({ images }: { images: string[] }) {
               src={image}
               alt={`Image ${i + 1}`}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1000px"
-              priority={i === 0}
             />
           </div>
         ))}

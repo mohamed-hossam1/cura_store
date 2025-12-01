@@ -19,7 +19,8 @@ export async function getAllProduct() {
 export async function getProductDetails(id:string) {
   const supabase = await createClient()
   const {data, error} = await supabase.from("products").select(`
-      *
+      *,
+      categories ( title, image, id )
     `).eq("id", id).single()
   return {data,error}
 }

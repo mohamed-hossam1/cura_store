@@ -1,43 +1,51 @@
 "use client"
 import React, { createContext, useState, useContext, useEffect } from 'react';
-
+import { useCart } from './CartContext';
 
 interface UserContextType {
   user: UserData | null;
   updateUser: (newData: UserData) => void;
   resetUser: () => void;
+  isLoading: boolean; 
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export function UserProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<UserData | null>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = sessionStorage.getItem('userData');
-      return saved ? JSON.parse(saved) : null;
-    }
-    return null;
-  });
+  const { initCart } = useCart();
+  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState<UserData | null>(null);
 
   useEffect(() => {
-    if (user) {
-      sessionStorage.setItem('userData', JSON.stringify(user));
-    } else {
-      sessionStorage.removeItem('userData');
+    const saved = localStorage.getItem('userData');
+    if (saved) {
+      setUser(JSON.parse(saved));
     }
-    const saved = sessionStorage.getItem('userData');
-  }, [user]);
+    setIsLoading(false);
+  }, []);
+
+  useEffect(() => {
+    if (!isLoading) {
+      if (user) {
+        localStorage.setItem('userData', JSON.stringify(user));
+      } else {
+        localStorage.removeItem('userData');
+      }
+    }
+  }, [user, isLoading]);
 
   const updateUser = (newData: UserData) => {
     setUser(newData);
+    initCart();
   };
 
   const resetUser = () => {
     setUser(null);
+    initCart();
   };
 
   return (
-    <UserContext.Provider value={{ user, updateUser, resetUser }}>
+    <UserContext.Provider value={{ user, updateUser, resetUser, isLoading }}>
       {children}
     </UserContext.Provider>
   );

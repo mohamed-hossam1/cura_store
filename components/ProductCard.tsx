@@ -8,9 +8,10 @@ export default function ProductCard({product}:{product: ProductData}) {
       <div className="relative md:h-52 h-30 bg-white ">
         <Image
           fill
+          sizes={"30"}
+          className="w-full h-full object-contain"
           src={product.image_cover}
           alt={product.title}
-          className="w-full h-full object-contain"
         >
         </Image>
       </div>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { UserProvider } from "@/Context/UserContext";
+import { CartProvider } from "@/Context/CartContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,23 +14,22 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
       <body>
-        <UserProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </UserProvider>
+        <CartProvider>
+          <UserProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+            </ThemeProvider>
+          </UserProvider>
+        </CartProvider>
       </body>
     </html>
   );

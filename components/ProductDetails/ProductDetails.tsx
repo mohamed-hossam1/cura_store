@@ -19,27 +19,6 @@ export default async function ProductDetails({ id }: { id: string }) {
                 <ImageSlider images={product.images} />
               </div>
 
-              <div>
-                {product.stock > 0 ? (
-                  <div className="flex flex-wrap gap-2 items-center text-lg border-b pb-7">
-                    <span className="px-3 py-1 bg-green-100 text-green-800  font-medium rounded-full">
-                      In Stock
-                    </span>
-                    <span className="text-black font-semibold  ">
-                      {product.stock}
-                    </span>
-                  </div>
-                ) : (
-                  <div className="flex flex-wrap gap-2 items-center text-lg border-b pb-7">
-                    <span className="px-3 py-1 bg-red-100 text-red-800  font-medium rounded-full">
-                      Out Of Stock
-                    </span>
-                    <span className="text-black font-semibold  ">
-                      {product.stock}
-                    </span>
-                  </div>
-                )}
-              </div>
             </div>
           </div>
           <div className="flex-10 pt-5">

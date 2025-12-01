@@ -1,5 +1,6 @@
 import Products from "@/components/home/Products";
 import Slider from "@/components/home/Slider";
+import Test from "@/components/Test";
 
 export default function Home() {
   return (
@@ -7,6 +8,7 @@ export default function Home() {
       <Slider />
 
       <Products />
+      <Test />
     </div>
   );
 }

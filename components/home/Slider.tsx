@@ -1,7 +1,8 @@
-"use client"
-import React, { useEffect, useState } from 'react'
-import { ArrowRight, ArrowLeft } from 'lucide-react';
+"use client";
+import React, { useEffect, useState } from "react";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Slider() {
   const slides = [
@@ -13,7 +14,7 @@ export default function Slider() {
       text2: "UP to 30% OFF",
       buText: "Hair Care",
       img: "https://www.tyoemcosmetic.com/wp-content/uploads/%E8%BA%AB%E4%BD%93%E6%8A%A4%E7%90%86-banner.png",
-      category: "68e93cbce2507605cbba84d2"
+      category: "68e93cbce2507605cbba84d2",
     },
     {
       bgcolor: "#212844",
@@ -23,7 +24,7 @@ export default function Slider() {
       text2: "UP to 30% OFF",
       buText: "Skincare",
       img: "https://www.tyoemcosmetic.com/wp-content/uploads/%E9%BB%91%E5%8F%91%E6%8A%A4%E7%90%86banner.png",
-      category: "68e93cbce2507605cbba84d2"
+      category: "68e93cbce2507605cbba84d2",
     },
     {
       bgcolor: "#212844",
@@ -33,9 +34,8 @@ export default function Slider() {
       text2: "UP to 30% OFF",
       buText: "Body Care",
       img: "https://www.kadusprofessional.com/sites/default/files/styles/menu_category/public/images/packshot/Kadus_NEW%20Care%20Products%20Baseline_523x300_4.png.webp?itok=BuwgSiMS",
-      category: "68e93cbce2507605cbba84d2"
+      category: "68e93cbce2507605cbba84d2",
     },
-    
   ];
 
   const [curSlide, setCurSlide] = useState(0);
@@ -48,32 +48,31 @@ export default function Slider() {
     setCurSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      sliderRight();
-    }, 4000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     sliderRight();
+  //   }, 4000);
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   const [startX, setStartX] = useState(0);
   const [endX, setEndX] = useState(0);
 
-
-  const handleTouchStart = (e:React.TouchEvent<HTMLDivElement>) => {
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     setStartX(e.touches[0].clientX);
   };
 
-  const handleTouchEnd = (e:React.TouchEvent<HTMLDivElement>) => {
+  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
     setEndX(e.changedTouches[0].clientX);
     handleSwipe();
   };
 
-  const handleMouseDown = (e:React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     setStartX(e.clientX);
   };
 
-  const handleMouseUp = (e:React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseUp = (e: React.MouseEvent<HTMLDivElement>) => {
     setEndX(e.clientX);
     handleSwipe();
   };
@@ -91,7 +90,7 @@ export default function Slider() {
 
   return (
     <section
-      className=" max-w-[1600px] px-5 sm:px-15 m-auto items-center h-[500px] relative mb-40 select-none"
+      className=" max-w-[1600px] px-5 sm:px-15 m-auto items-center h-[450px] relative mb-40 select-none"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onMouseDown={handleMouseDown}
@@ -101,14 +100,20 @@ export default function Slider() {
         className="w-24 h-24 rounded-full bg-primary-foreground absolute top-1/2 -translate-y-1/2 left-2 items-center justify-center transform duration-200 border-8 border-white cursor-pointer z-30 hidden sm:flex group"
         onClick={sliderLeft}
       >
-      <ArrowLeft className="text-primary group-hover:scale-110 transform-all duration-300" size={37}/>
+        <ArrowLeft
+          className="text-primary group-hover:scale-110 transform-all duration-300"
+          size={37}
+        />
       </button>
 
       <button
         className="w-24 h-24 rounded-full bg-primary-foreground absolute top-1/2 -translate-y-1/2 right-2   items-center justify-center transform duration-200 border-8 border-white cursor-pointer z-30 hidden sm:flex group"
         onClick={sliderRight}
       >
-        <ArrowRight className="text-primary group-hover:scale-110 transform-all duration-300" size={37}/>
+        <ArrowRight
+          className="text-primary group-hover:scale-110 transform-all duration-300"
+          size={37}
+        />
 
         <i className="fa-solid fa-angle-right text-2xl text-primary group-hover:scale-110 transform-all duration-300"></i>
       </button>
@@ -133,26 +138,28 @@ export default function Slider() {
             ></div>
 
             <div className="flex justify-between h-full items-center text-white ">
-              <div className="lg:flex flex-col m-32 gap-8 hidden mt-40">
-                <span className="text-5xl xl:text-7xl font-extrabold">
+              <div className="flex-4 lg:flex flex-col m-32 gap-8 hidden mt-40">
+                <span className="text-5xl xl:text-5xl font-extrabold">
                   {slide.text}
                 </span>
-                <span className="text-2xl xl:text-3xl font-bold">
+                <span className="text-2xl xl:text-xl font-bold">
                   {slide.text2}
                 </span>
                 <Link
                   href={`/category/${slide.category}`}
-                  className="hidden lg:block w-60 text-center relative text-2xl border-2 border-black rounded-xl px-5 py-3 font-bold text-black overflow-hidden lg:mb-10 z-[1] transition-all duration-500 ease-in-out hover:text-white bg-white before:content-[''] before:absolute before:left-0 before:top-0 before:w-1/2 before:h-full before:bg-primary-hover before:-translate-y-full before:transition-all before:duration-500 before:ease-in-out hover:before:translate-y-0 before:z-[-1] after:content-[''] after:absolute after:left-[50%] after:top-0 after:w-1/2 after:h-full after:bg-primary-hover after:translate-y-full after:transition-all after:duration-500 after:ease-in-out after:delay-[300ms] hover:after:translate-y-0 after:z-[-1]"
+                  className="hidden lg:block w-40 text-center relative text-xl border-2 border-black rounded-xl px-5 py-3 font-bold text-black overflow-hidden lg:mb-10 z-[1] transition-all duration-500 ease-in-out hover:text-white bg-white before:content-[''] before:absolute before:left-0 before:top-0 before:w-1/2 before:h-full before:bg-primary-hover before:-translate-y-full before:transition-all before:duration-500 before:ease-in-out hover:before:translate-y-0 before:z-[-1] after:content-[''] after:absolute after:left-[50%] after:top-0 after:w-1/2 after:h-full after:bg-primary-hover after:translate-y-full after:transition-all after:duration-500 after:ease-in-out after:delay-[300ms] hover:after:translate-y-0 after:z-[-1]"
                 >
                   {slide.buText}
                 </Link>
               </div>
 
-              <div className="w-full flex flex-col items-center gap-6 lg:w-2/5 lg:mr-32 ">
-                <img
+              <div className="flex-3 h-70 relative flex flex-col items-center gap-6 lg:w-2/5 lg:mr-32 ">
+                <Image
                   src={slide.img}
                   alt={slide.text}
-                  className="min-w-[250px] max-w-[290px] lg:max-w-fit lg:min-w-[300px] mx-auto"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  loading="eager"
                 />
                 <Link
                   href={`/category/${slide.category}`}
@@ -170,7 +177,7 @@ export default function Slider() {
         {slides.map((_, i) => (
           <button
             className={`cursor-pointer min-w-5 h-5 border-2 rounded-full ${
-              i === curSlide ? 'bg-primary-hover' : 'bg-primary-foreground'
+              i === curSlide ? "bg-primary-hover" : "bg-primary-foreground"
             }`}
             key={i}
             onClick={() => setCurSlide(i)}

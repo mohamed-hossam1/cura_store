@@ -3,12 +3,7 @@
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 
-interface UserData {
-  name?: string;
-  email: string;
-  password: string;
-  phone?: string;
-}
+
 
 export async function SignUpSupabase({
   name,

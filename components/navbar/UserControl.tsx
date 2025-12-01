@@ -6,19 +6,15 @@ import ROUTES from "@/constants/routes";
 import { useEffect, useState } from "react";
 
 export default function UserControl() {
-  const user = useUser();
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const {user, isLoading} = useUser();
 
-  if (!mounted) {
+  if (isLoading) {
     return <UserMenu user={null} />;
   }
 
   return (
     <>
-      {!user?.user ? (
+      {!user ? (
         <>
           <div className="hidden lg:flex">
             <Link

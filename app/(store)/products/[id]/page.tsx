@@ -1,19 +1,17 @@
-import ProductDetails from "@/components/ProductDetails/ProductDetails"
-import ProductDetailsSkeleton from "@/components/skeleton/ProductDetailsSkeleton"
-import { Suspense } from "react"
+import ProductDetails from "@/components/ProductDetails/ProductDetails";
+import ProductDetailsSkeleton from "@/components/skeleton/ProductDetailsSkeleton";
+import { Suspense } from "react";
 
-export default async function ProductPage({ params }: { params: Promise<{ id: string }> }){
-  const { id } = (await params)
+export default async function ProductPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
 
-  return (
-    id == "82"
-      ? (
-          <Suspense fallback={<ProductDetailsSkeleton />}>
-            <ProductDetails id={id} />
-          </Suspense>
-        )
-      : <ProductDetailsSkeleton />
+  return(
+    <Suspense fallback={<ProductDetailsSkeleton />}>
+      <ProductDetails id={id} />
+    </Suspense>
   )
-
-
 }

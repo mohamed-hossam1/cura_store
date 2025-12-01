@@ -19,14 +19,17 @@ export default function AuthLayout({
                 href={ROUTES.HOME}
                 className="flex items-center hover:scale-105 transition-transform duration-300 cursor-pointer"
               >
-                <Image
-                  src="/cura-logo.png"
-                  width={120}
-                  height={120}
-                  alt="Picture of the author"
-                  priority={true}
-                  className="transition-all duration-300 hover:scale-110 h-auto "
-                />
+                <div className="relative w-28 h-28">
+                  <Image
+                    src="/cura-logo.png"
+                    alt="Logo"
+                    fill
+                    sizes="30"
+                    loading="eager"
+                    style={{ objectFit: "contain" }}
+                    className="transition-transform duration-300 hover:scale-110"
+                  />
+                </div>
               </Link>
             </div>
           </div>

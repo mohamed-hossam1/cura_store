@@ -18,7 +18,7 @@ import { useRouter } from "next/navigation";
 export default function UserMenu({user}) {
   const [open, setOpen] = useState<boolean>(false);
   const router = useRouter()
-  const userData = user?.user
+  const userData = user
 
   const signOut = async ()=>{
     await SignOutSupabase()
@@ -33,7 +33,7 @@ export default function UserMenu({user}) {
               {userData && <p>{userData.name}</p>}
 
             </div>
-            <div className="border-2 flex bg-primary items-center py-[7px] px-[8px] rounded-full cursor-pointer border-primary transition-all duration-300">
+            <div className="border-2 flex bg-primary items-center w-10 h-10 flex justify-center items-center rounded-full cursor-pointer border-primary transition-all duration-300">
               {userData?<>
                 <p className="text-white w-5 cursor-pointer font-bold" onClick={() => setOpen(!open)}>{userData.name[0]}</p>
               </>:
